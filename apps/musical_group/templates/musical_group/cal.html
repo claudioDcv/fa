@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'node_modules/fullcalendar/dist/fullcalendar.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'node_modules/fullcalendar/dist/fullcalendar.print.css' %}" />
+<link rel="stylesheet" href="{% static 'calendar.css' %}">
+{% endblock %}
+
+{% block classContainer %}container-fluid{% endblock %}
+
+{% block content %}
+<div class="col-12">
+  <div id="eventContent" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="eventTitle">New message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div className="modal-body">
+          <div class="col-12">
+            Start: <span id="startTime"></span><br>
+            End: <span id="endTime"></span><br><br>
+            <p id="eventInfo"></p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Send message</button>
+          <a id="eventLink" href="" target="_blank">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id='calendar'></div>
+</div>
+{% endblock %}
+
+{% block scrips %}
+<script src="{% static 'node_modules/moment/min/moment-with-locales.min.js' %}" charset="utf-8"></script>
+<script src="{% static 'node_modules/fullcalendar/dist/fullcalendar.min.js' %}" charset="utf-8"></script>
+<script src="{% static 'calendar.js' %}" charset="utf-8"></script>
+{% endblock %}

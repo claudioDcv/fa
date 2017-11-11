@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="col-sm-12">
+  <h2><span class="color-bullet" style="background: #{{ song.color }}"></span>
+    Tema {{ song.name }}
+    <div class="btn-group" role="group">
+      {% if has_edit %}
+      <a href="{% url 'song-edit' song.pk %}"
+        class="btn btn-sm btn-outline-warning"
+      ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+      {% endif %}
+    </div>
+  </h2>
+  <p>Grupo {{ song.musical_group.name }}</p>
+  <div class="musical-styles">
+    <small>Estilos: {{ song.musical_styles.all|join:", " }}</small><br />
+    <small>Duración: {{ song.duration }}</small><br />
+    <small>Fecha Creación: {{ song.creation_date }}</small><br />
+  </div>
+
+  Audio
+  <audio src="{{ file }}" preload="auto" />
+
+
+  <div class="musician-box">
+    <small>Directores<br />{{ song.musical_group.directors.all|join:", " }}</small>
+    <small>Musicos Permanentes<br />{{ song.permanent_musician.all|join:", " }}</small>
+    <small>Musicos Invitados<br />{{ song.guest_musician.all|join:", " }}</small>
+  </div>
+
+</div>
+{% endblock %}

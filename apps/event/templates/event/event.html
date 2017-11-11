@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block classContainer %}container-fluid{% endblock %}
+{% block content %}
+
+<div class="row">
+  <div class="col-12">
+    <h2>
+      <span class="color-bullet" style="background: #{{ object.color }}"></span>
+      Evento {{ object.pk }}
+    </h2>
+  </div>
+</div>
+
+{% endblock %}

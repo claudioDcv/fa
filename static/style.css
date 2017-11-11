@@ -1,0 +1,198 @@
+.account-wall {
+  margin-top: 40px;
+  padding: 0;
+  background-color: #505f6c;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.account-wall form {
+  padding: 15px;
+}
+.login-title
+{
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 400;
+  display: block;
+  background: #3e4953;
+  padding: 20px 15px;
+  text-transform: uppercase;
+  border-bottom: solid 4px #35393d;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 120px;
+  min-height: 100%;
+}
+
+.container {
+  margin-top: 15px;
+}
+
+.card {
+  margin-bottom: 30px;
+}
+
+.table-dark {
+    color: #ffffff;
+    border-color: #778795;
+}
+.table-dark th, .table-dark td, .table-dark thead th {
+    border-color: #778795;
+}
+
+
+
+.musical-styles {
+  position: relative;
+  background: #394a5a;
+  margin-bottom: 15px;
+  padding: 12px 90px 5px 15px;
+  border-radius: 5px;
+  min-height: 50px;
+}
+
+.musical-styles div.btn-group {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.musician-box {
+  background: #3a4b5a;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.musician-box > * {
+  display: block;
+  border-bottom: solid 2px #2c3f50;
+  padding: 15px;
+}
+.musician-box > *:last-child {
+  border: none;
+}
+
+.color-bullet{
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin: 0 16px 0 0;
+  border-radius: 50%;
+}
+.card-header .color-bullet {
+  width: 12px;
+  height: 12px;
+  margin: 0 6px 0 0;
+}
+
+.form-view {
+  width: 100%;
+  background: rgb(79, 94, 108);
+  border-radius: 5px;
+  padding: 15px;
+}
+
+td .color-bullet{
+  width: 10px;
+  height: 10px;
+  margin: 0 6px 0 0;
+}
+
+.select2, .select2-container {
+  color: #424242;
+}
+
+.js-t {
+  border: 1px solid #2c3f50;
+  border-bottom-color: #2c3f50;
+  background: #444;
+  width: 283px;
+}
+.js-t .js-t-hour-container, .js-t .js-t-minute-container {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+.js-t .js-t-minute-container {
+  margin-left: 0 !important;
+  margin-top: 15px;
+}
+.js-t-second-container {
+  display: block;
+  float: none !important;
+  width: 257px !important;
+  height: 10px !important;
+  background: #444444;
+  margin-top: 220px;
+  margin-left: 0 !important;
+}
+
+
+.js-t-hour-container::before {
+  display: block;
+  content: 'Horas';
+}
+.js-t-minute-container::before {
+  display: block;
+  content: 'Minutos';
+}
+.js-t-second-container::before {
+  display: block;
+  content: 'Segundos';
+}
+
+.datepicker.form-control:disabled,
+.datepicker.form-control[readonly] {
+  background: white;
+  border-color: #ced4d9;
+}
+
+.select2 {
+  width: 100% !important;
+}
+
+.audiojs {
+    background-image: none;
+}
+.audiojs .play-pause {
+    width: 40px;
+}
+
+.fc-unthemed td.fc-today {
+    background: #3a546a !important;
+}
+.fc-unthemed .fc-divider, .fc-unthemed .fc-list-heading td, .fc-unthemed .fc-popover .fc-header {
+    background: #4f5e6c !important;
+}
+.fc-unthemed .fc-list-item:hover td {
+    background-color: #778591;
+}
+/**
+ * Footer Styles
+ */
+
+ footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 30px;
+  background-color: #4f5e6c;
+  color: #df6930;
+  text-align: center;
+ }

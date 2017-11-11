@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Django Simple Login{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'js-timepicker-master/js-timepicker.css' %}">
+  <link href="{% static 'node_modules/select2/dist/css/select2.min.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'node_modules/font-awesome/css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'DatePickerX/min/css/DatePickerX.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'theme.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+  {% block head %}
+  {% endblock %}
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">enFa</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'calendar' %}">Calendar</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <ul class="navbar-nav mr-auto">
+          {% if user.is_superuser %}
+          <li class="nav-item">
+            <a class="nav-link" href="/api/">API</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/">Admin</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="/logout/">{{ user.username }}</a>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </nav>
+
+  <div class="{% block classContainer %}container{% endblock %}">
+    <div class="row">
+      <div id="msg" class="col-12"></div>
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+  <footer>
+    enFa
+  </footer>
+
+  <script src="{% static 'serializeForm.js' %}" charset="utf-8"></script>
+  <script src={% static 'cal/moment.js' %}></script>
+  <script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}" charset="utf-8"></script>
+  <script src="{% static 'popper.min.js' %}" charset="utf-8"></script>
+  <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.js' %}" charset="utf-8"></script>
+  <script src="{% static 'node_modules/select2/dist/js/select2.min.js' %}"></script>
+  <script src="{% static 'audiojs/audiojs/audio.min.js' %}" charset="utf-8"></script>
+  <script src="{% static 'js-timepicker-master/js-timepicker.js' %}" charset="utf-8"></script>
+  <script src="{% static 'jscolor-2.0.4/jscolor.js' %}" charset="utf-8"></script>
+  <script src="{% static 'DatePickerX/min/js/DatePickerX.js' %}" charset="utf-8"></script>
+  <script src="{% static 'main.js' %}" charset="utf-8"></script>
+
+
+  {% block scrips %}
+  {% endblock %}
+</body>
+</html>

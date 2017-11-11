@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<form
+  data-success="/home/song/{{form.initial.id}}/"
+  action="/api/songs/{{form.initial.id}}/"
+  method="post"
+  class="form-view ajax-form" id="form-song-edit"
+>
+    {% csrf_token %}
+
+    <div class="row">
+      <div class="col-9">
+        <div class="form-group">
+          <label for="color">Nombre</label>
+          {{ form.name }}
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <label for="color">Color</label>
+          {{ form.color }}
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <label for="color">Archivo</label>
+          <audio src="{{ file }}" preload="auto" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="color">Duración</label>
+          {{ form.duration }}
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="color">Fecha de Creación</label>
+          {{ form.creation_date }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="musical_styles">Estilos Musicales</label><br />
+          <select
+           data-type="multiselect"
+           class="form-control select2"
+           name="musical_styles"
+           required
+           id="id_musical_styles"
+           multiple="multiple"
+           >
+          {% for musical_style in musical_styles %}
+           <option selected value="{{ musical_style.id }}">{{ musical_style.name }}</option>
+          {% endfor %}
+         </select>
+       </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="guest_musician">Musicos Invitados</label><br />
+          <select
+           data-type="multiselect"
+           class="form-control select2"
+           name="guest_musician"
+           id="id_guest_musician"
+           multiple="multiple"
+         >
+         {% for guest_music in guest_musician %}
+          <option selected value="{{ guest_music.id }}">{{ guest_music.username }}</option>
+         {% endfor %}
+         </select>
+       </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="permanent_musician">Musicos Permanentes</label><br />
+          <select
+           data-type="multiselect"
+           class="form-control select2"
+           name="permanent_musician"
+           id="id_permanent_musician"
+           multiple="multiple"
+         >
+         {% for permanent_music in permanent_musician %}
+          <option selected value="{{ permanent_music.id }}">{{ permanent_music.username }}</option>
+         {% endfor %}
+         </select>
+       </div>
+      </div>
+    </div>
+
+    <hr />
+    <input id="input-song-edit" type="submit" value="Guardar" class="btn btn-success" />
+</form>
+
+
+{% endblock %}

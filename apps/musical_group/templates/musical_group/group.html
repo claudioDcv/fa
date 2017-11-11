@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="col-sm-12">
+  <h2>
+    <span class="color-bullet" style="background: #{{ musical_group.color }}"></span>
+    Grupo {{ musical_group.name }}
+  </h2>
+  <div class="musical-styles">
+    <small>{{ musical_group.musical_styles.all|join:", " }}</small>
+    <div class="btn-group" role="group">
+      <button type="button" name="button"
+        class="btn btn-sm btn-outline-success"
+      ><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+      <button type="button" name="button"
+        class="btn btn-sm btn-outline-warning"
+      ><i class="fa fa-pencil" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="musician-box">
+    <small>Directores<br />{{ musical_group.directors.all|join:", " }}</small>
+    <small>Musicos Permanentes<br />{{ musical_group.permanent_musician.all|join:", " }}</small>
+    <small>Musicos Invitados<br />{{ musical_group.guest_musician.all|join:", " }}</small>
+  </div>
+
+  Listado de Temas
+  <table class="table table-responsive table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Estilos</th>
+      <th>Musicos Permanentes</th>
+      <th>Musicos Invitados</th>
+      <th scope="col">Audio</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for song in songs %}
+      <tr>
+        <th scope="row">{{ song.pk }}</th>
+        <td><span class="color-bullet" style="background: #{{ song.color }}"></span>{{ song.name }}</td>
+        <td><small>{{ song.musical_styles.all|join:", " }}</small></td>
+        <td><small>{{ song.permanent_musician.all|join:", " }}</small></td>
+        <td><small>{{ song.guest_musician.all|join:", " }}</small></td>
+        <td>
+        {% if song.upload.url %}
+          <audio src="{{ song.upload.url }}" preload="auto" />
+        {% endif %}
+        </td>
+        <td>
+          <a href="{% url 'song' song.pk %}" class="btn btn-sm btn-outline-primary" name="button">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+          </a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+{% endblock %}

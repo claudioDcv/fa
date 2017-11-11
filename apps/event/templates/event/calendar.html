@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block head %}
+<link href='{% static 'cal/fullcalendar.css' %}' rel='stylesheet' />
+<link href={% static 'cal/print.css' %} rel='stylesheet' media='print' />
+
+<style>
+
+	#calendar {
+		max-width: 860px;
+		margin: 24px auto;
+	}
+
+</style>{% endblock %}
+
+{% block classContainer %}container-fluid{% endblock %}
+{% block content %}
+	<div id='calendar'></div>
+
+	<div id="calendarModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalTitle">New message</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div className="modal-body">
+					<div class="col-12">
+						Fecha: <span id="modalWhen"></span><br>
+						<p id="eventInfo"></p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<a id="eventLink" href="" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block scrips %}
+
+<script src={% static 'cal/fullcalendar.js' %}></script>
+<script src="{% static 'cal/main.js' %}" charset="utf-8"></script>
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TimePicker</title>
+	<script src="js-timepicker.js"></script>
+	<link rel="stylesheet" href="js-timepicker.css">
+</head>
+<body>
+	
+	<p>
+		<input type="text" name="picker-1" style="position: absolute;    left: 800px;    top: 200px;"/>
+
+	</p>
+	
+
+	<p>
+		<input type="text" name="picker-2" style="position: absolute;    left: 800px;    top: 300px;"/>
+
+	</p>
+	
+
+	<p>
+		<input type="text" name="picker-3" style="position: absolute;    left: 800px;    top: 400px;"/>
+
+	</p>
+
+
+	<script>
+	window.picker1 = new JsTimepicker(document.querySelector('[name="picker-1"]'), {hourLeadingZero: false, minuteLeadingZero: false});
+	window.picker2 = new JsTimepicker(document.querySelector('[name="picker-2"]'), {hourLeadingZero: false});
+	window.picker3 = new JsTimepicker(document.querySelector('[name="picker-3"]'), {minuteLeadingZero: false});
+
+	console.log(picker1);
+	</script>
+
+</body>
+</html>

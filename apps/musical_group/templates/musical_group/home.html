@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="col-sm-3">
+  <h2>Cuenta</h2>
+  <div class="card">
+    <div class="card-header">
+      Info
+    </div>
+    <div class="card-body">
+      <!-- <h4 class="card-title"></h4> -->
+      <p class="card-text">
+        Usuario: {{ user.username }}<br />
+        Nombre: {{ user.first_name }}<br />
+        Apellido: {{ user.last_name }}<br />
+        Email: {{ user.email }}<br />
+        Edad: {{ user.userinfo.age }}<br />
+      </p>
+      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+  </div>
+
+</div>
+<div class="col-sm-9">
+  <h2>Grupos</h2>
+
+  {% if musical_groups %}
+    <h4>Musico Director</h4>
+  {% endif %}
+  {% for musical_group in musical_groups %}
+    <div class="card">
+      <div class="card-header">
+        <span class="color-bullet" style="background: #{{ musical_group.color }}"></span>
+        <strong>{{ musical_group.name }}</strong>
+      </div>
+      <div class="card-body">
+        <!-- <h4 class="card-title"></h4> -->
+        <p class="card-text">
+          Estilos: {{ musical_group.musical_styles.all|join:", " }}
+        </p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+      <div class="card-footer text-muted">
+        <a href="{% url 'group' musical_group.pk %}"
+          class="btn btn-sm btn-outline-primary" name="button">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+
+  {% if musical_groups_guest %}
+    <h4>Musico Invitado</h4>
+  {% endif %}
+  {% for musical_group in musical_groups_guest %}
+    <div class="card">
+      <div class="card-header">
+        <span class="color-bullet" style="background: #{{ musical_group.color }}"></span>
+        <strong>{{ musical_group.name }}</strong>
+      </div>
+      <div class="card-body">
+        <!-- <h4 class="card-title"></h4> -->
+        <p class="card-text">
+          Estilos: {{ musical_group.musical_styles.all|join:", " }}
+        </p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+      <div class="card-footer text-muted">
+        <a href="{% url 'group-guest-musician' musical_group.pk %}"
+          class="btn btn-sm btn-outline-primary" name="button">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+
+  {% if musical_groups_permanent %}
+    <h4>Musico Permanente</h4>
+  {% endif %}
+  {% for musical_group in musical_groups_permanent %}
+    <div class="card">
+      <div class="card-header">
+        <span class="color-bullet" style="background: #{{ musical_group.color }}"></span>
+        <strong>{{ musical_group.name }}</strong>
+      </div>
+      <div class="card-body">
+        <!-- <h4 class="card-title"></h4> -->
+        <p class="card-text">
+          Estilos: {{ musical_group.musical_styles.all|join:", " }}
+        </p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+      <div class="card-footer text-muted">
+        <a href="{% url 'group-permanent-musician' musical_group.pk %}"
+          class="btn btn-sm btn-outline-primary" name="button">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+
+{% endblock %}
