@@ -29,7 +29,7 @@ SECRET_KEY = 'z#2q(nm26ej9+j3c@cy+wru!0892*)v6q3v0t&^$=dnn_!&sh^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'pacific-savannah-18194.herokuapp.com']
 
 
 # Application definition
@@ -171,3 +171,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = '{}{}'.format(PROJECT_DIR, '/media')
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
