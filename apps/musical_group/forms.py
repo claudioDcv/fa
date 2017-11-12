@@ -1,5 +1,5 @@
 from django import forms
-from apps.musical_group.models import Song
+from apps.musical_group.models import Song, MusicalGroup
 
 
 class SongForm(forms.ModelForm):
@@ -35,11 +35,6 @@ class SongForm(forms.ModelForm):
         }),
     )
 
-    # musical_styles = forms.MultipleChoiceField(
-    #     widget=forms.SelectMultiple(attrs={
-    #         'class': 'form-control js-data-example-ajax',
-    #     }),
-    # )
 
     class Meta:
         model = Song  # with attr somedata
@@ -54,3 +49,10 @@ class SongForm(forms.ModelForm):
     def valid_color(self):
         # send email using the self.cleaned_data dictionary
         pass
+
+
+class MusicalGroupForm(forms.ModelForm):
+
+    class Meta:
+        model = MusicalGroup
+        fields = '__all__'

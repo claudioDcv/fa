@@ -21,12 +21,22 @@ function getCookie(name) {
 var csrftoken = getCookie('csrftoken');
 var eventURL = '/home/event/'
 var api = '/api/events/'
+
 var source = [
 	{
 			url: api,
 			headers: {
 				"X-CSRFToken": csrftoken,
 			},
+      success: function(data) {
+        return data.map(function(d) {
+          var _d = d;
+          _d.backgroundColor = '#' + d.status.color;
+          _d.textColor = '#000000';
+          _d.editable = d.owner === USER_ID;
+          return _d;
+        });
+      }
 	}
 ];
 
@@ -35,8 +45,7 @@ var source = [
 /*
  * Sends a request to modify start/end date of an event to the server
  */
-function updateEventTimes( event, delta, revertFunc, jsEvent, ui, view )
-{
+var sendEvent = function(event, revertFunc) {
   $.ajax({
     type: 'patch',
     url: api + event.id + '/',
@@ -62,6 +71,30 @@ function updateEventTimes( event, delta, revertFunc, jsEvent, ui, view )
       revertFunc();
     }
   });
+}
+
+
+function updateEventTimes( event, delta, revertFunc, jsEvent, ui, view )
+{
+
+  if (event.accepted_users.length > 0 || event.notified_users > 0 ) {
+    mscConfirm({
+      title: 'Confirmar Cambio de Evento',
+      subtitle: 'Este evento tiene musicos agregados, si modifica el evento, se notificara a los participantes',
+      onOk: function() {
+        sendEvent(event, revertFunc);
+      },
+      onCancel: function() {
+        revertFunc();
+      },
+      okText: 'Confirmar',
+      cancelText: 'Cancelar'
+    }, function() {
+      console.log('e');
+    });
+  } else {
+    sendEvent(event, revertFunc);
+  }
 };
 
 
@@ -82,7 +115,6 @@ function updateEventTimes( event, delta, revertFunc, jsEvent, ui, view )
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
 			eventSources: source,
-
       eventClick:  function(event, jsEvent, view) {  // when some one click on any event
           var endtime = $.fullCalendar.moment(event.end).format('h:mm');
           var starttime = $.fullCalendar.moment(event.start).format('dddd, MMMM Do YYYY, h:mm');
@@ -95,6 +127,10 @@ function updateEventTimes( event, delta, revertFunc, jsEvent, ui, view )
       },
       eventResize: updateEventTimes,
       eventDrop: updateEventTimes,
+      viewRender: function (view, element) {
+        var b = $('#calendar').fullCalendar('renderEvents', []);
+        // alert(b.format('L'));
+      },
 		});
 
 	});

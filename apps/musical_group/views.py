@@ -4,22 +4,27 @@ from django.db.models import Q
 from django.shortcuts import redirect
 from apps.musical_group.forms import SongForm
 from django.views.generic.edit import UpdateView
+from conf.utils import merge_list, roles_by_object
 
 
 class HomeView(TemplateView):
     template_name = 'musical_group/home.html'
+    model = MusicalGroup
 
     def get_context_data(self, **kwargs):
+
+        model = self.model.objects
+        user = self.request.user
         context = super(HomeView, self).get_context_data(**kwargs)
         context['user'] = self.request.user
-        context['musical_groups'] = MusicalGroup.objects.filter(
-            directors__id=self.request.user.pk
+        context['musical_groups'] = model.filter(
+            directors__id=user.pk
         )
-        context['musical_groups_permanent'] = MusicalGroup.objects.filter(
-            permanent_musician__id=self.request.user.pk
+        context['musical_groups_permanent'] = model.filter(
+            permanent_musician__id=user.pk
         )
-        context['musical_groups_guest'] = MusicalGroup.objects.filter(
-            guest_musician__id=self.request.user.pk
+        context['musical_groups_guest'] = model.filter(
+            guest_musician__id=user.pk
         )
         return context
 
@@ -30,40 +35,13 @@ class MusicalGroupView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(MusicalGroupView, self).get_context_data(**kwargs)
         context['user'] = self.request.user
-        context['musical_group'] = MusicalGroup.objects.get(
-            pk=kwargs['group_id'],
-            directors__id=self.request.user.pk
-        )
-        context['songs'] = context['musical_group'].songs.all()
-        return context
+
+        musical_group = MusicalGroup.objects.get(pk=kwargs['group_id'])
 
 
-class MusicalGroupPermanentView(TemplateView):
-    template_name = 'musical_group/group.html'
+        context['roles'] = roles_by_object(self.request.user, musical_group)
 
-    def get_context_data(self, **kwargs):
-        context = super(MusicalGroupPermanentView, self).get_context_data(**kwargs)
-        context['user'] = self.request.user
-        context['musical_group'] = MusicalGroup.objects.get(
-            pk=kwargs['group_id'],
-            permanent_musician__id=self.request.user.pk
-        )
-        context['songs'] = context['musical_group'].songs.all()
-        return context
-
-
-class MusicalGroupGuestView(TemplateView):
-    template_name = 'musical_group/group.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(MusicalGroupGuestView, self).get_context_data(**kwargs)
-        context['user'] = self.request.user
-
-        context['musical_group'] = MusicalGroup.objects.get(
-            pk=kwargs['group_id'],
-            guest_musician__id=self.request.user.pk
-        )
-
+        context['musical_group'] = musical_group
         context['songs'] = context['musical_group'].songs.all()
         return context
 
@@ -73,19 +51,18 @@ class SongView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(SongView, self).get_context_data(**kwargs)
-        context['user'] = self.request.user
-        context['song'] = Song.objects.filter(
-            Q(musical_group__directors__id=self.request.user.pk) |
-            Q(guest_musician__id=self.request.user.pk) |
-            Q(permanent_musician__id=self.request.user.pk)
-        ).filter(pk=kwargs['song_id']).first()
+        user = self.request.user
+        song = Song.objects.get(pk=kwargs['song_id'])
+        context['user'] = user
+        context['song'] = song
 
-        context['has_edit'] = False
-        director_song = Song.objects.filter(
-            musical_group__directors__id=self.request.user.pk
-        ).filter(pk=kwargs['song_id']).first()
-        if director_song:
-            context['has_edit'] = True
+        context['roles'] = merge_list(
+            roles_by_object(user,song, 'directors')
+            + roles_by_object(user, song.musical_group),
+        )
+
+        context['has_edit'] = True if 'is_director' in context['roles'] else False
+
         return context
 
     def get(self, request, **kwargs):

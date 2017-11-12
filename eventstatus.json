@@ -1,0 +1,23 @@
+[
+   {
+      "model":"event.eventstatus",
+      "fields":{
+         "name":"Enviado",
+         "color":"FFA726"
+      }
+   },
+   {
+      "model":"event.eventstatus",
+      "fields":{
+         "name":"Pendiente",
+         "color":"FFC107"
+      }
+   },
+   {
+      "model":"event.eventstatus",
+      "fields":{
+         "name":"Aceptado",
+         "color":"4CAF50"
+      }
+   }
+ ]

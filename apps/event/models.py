@@ -1,14 +1,26 @@
 from django.db import models
-from apps.user.models import UserInfo
+from django.contrib.auth.models import User
+from apps.musical_group.models import MusicalGroup
 
+
+class EventStatus(models.Model):
+    name = models.CharField(max_length=255)
+    color = models.CharField(max_length=255)
+
+    def __str__(self):
+        return '{} {}'.format(self.name, self.color)
 
 class Event(models.Model):
     title = models.CharField(max_length=255)
+    status = models.ForeignKey(EventStatus)
+    musical_group = models.ForeignKey(MusicalGroup)
     start = models.DateTimeField()
     end = models.DateTimeField()
     color = models.CharField(max_length=10)
-    users = models.ManyToManyField(UserInfo)
-    description = models.TextField()
+    owner = models.ForeignKey(User)
+    notified_users = models.ManyToManyField(User, related_name='notified_users', blank=True)
+    accepted_users = models.ManyToManyField(User, related_name='accepted_users', blank=True)
+    description = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.title

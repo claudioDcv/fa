@@ -47,7 +47,10 @@ class EventViewSet(viewsets.ViewSet):
             queryset = queryset.filter(
                 Q(start__range=[start, end]) |
                 Q(end__range=[start, end])
-            ).filter(users__pk=user.id)
+            ).filter(
+                Q(owner__pk=user.id) |
+                Q(accepted_users__pk=user.id)
+            )
         else:
             queryset = queryset[:100]
 
