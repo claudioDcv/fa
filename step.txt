@@ -3,8 +3,8 @@ git rm -r --cached .
 
 ./manage.py createsuperuser
 
-claudio.dcv@gmail.com
 claudio
+claudio.dcv@gmail.com
 1234qwer
 
 ./manage.py loaddata musicalstyle.json
