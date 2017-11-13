@@ -27,7 +27,7 @@ urlpatterns = [
     ),
 
     url(
-        r'^home/song-create/$',
+        r'^home/song-create/(?P<pk>\w{0,50})/$',
         login_required(SongCreateView.as_view()),
         name='song-create',
     ),

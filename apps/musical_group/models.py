@@ -84,7 +84,7 @@ def directory_path(instance, filename):
 class Song(models.Model):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name')
-    upload = models.FileField(upload_to=directory_path)
+    upload = models.FileField(upload_to=directory_path, blank=True)
     duration = models.DurationField()
     creation_date = models.DateField()
     color = models.CharField(max_length=10)

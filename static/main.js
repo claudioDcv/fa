@@ -93,8 +93,22 @@ ajaxForms.forEach(function(e){
               model: 'song',
               text: `Tema '${data.name}' actualizado con exito`
             };
-            window.localStorage.setItem('msg',JSON.stringify(msg));
-            window.location.href = successUrl;
+
+            $.ajax({
+                url: '/api/file/',
+                type: 'post',
+                data: fd,
+                headers: {'X-CSRFToken': data.csrfmiddlewaretoken},
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function() {
+                  debugger;
+                },
+            });
+
+            // window.localStorage.setItem('msg',JSON.stringify(msg));
+            // window.location.href = successUrl;
         }
     });
   }, false)

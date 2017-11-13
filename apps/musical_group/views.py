@@ -66,6 +66,11 @@ class SongCreateView(CreateView):
     success_url = '/home/song/'
     model = Song
 
+    def get_context_data(self, **kwargs):
+        context = super(self.__class__, self).get_context_data(**kwargs)
+        context['group_id'] = 1
+        return context
+
 
 class SongEditView(UpdateView):
     template_name = 'musical_group/song-edit.html'
