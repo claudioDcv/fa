@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from apps.musical_group.models import MusicalGroup
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
-from .model_utils import Choices
 
 
 class EventStatus(models.Model):

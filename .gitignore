@@ -10,12 +10,11 @@ db.sqlite3
 
 ### Django ###
 
-backend/apps/api/__pycache__/
-backend/apps/api/migrations/__pycache__/
-backend/apps/musical_group/__pycache__/
-backend/apps/musical_group/migrations/__pycache__/
-backend/apps/user/__pycache__/
-
+apps/api/__pycache__/
+apps/api/migrations/__pycache__/
+apps/musical_group/__pycache__/
+apps/musical_group/migrations/__pycache__/
+apps/user/__pycache__/
 
 *.log
 *.pot
