@@ -43,11 +43,6 @@ class UserMusicalInstrumentStyle(models.Model):
     class Meta:
         verbose_name = 'Musico Intrumento y Estilo'
         verbose_name_plural = 'Musicos Instrumento y Estilos'
-    #
-    # @property
-    # def popularity(self):
-    #     likes = self.id
-    #     return likes
 
     def __str__(self):
         instruments = [x.name for x in self.musical_instruments.all()]
@@ -83,7 +78,6 @@ class MusicalGroup(models.Model):
 
 
 def directory_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return '{0}/songs/{1}'.format(instance.musical_group.pk, filename)
 
 

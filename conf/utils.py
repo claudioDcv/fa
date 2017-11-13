@@ -22,7 +22,10 @@ def roles_by_object(user, obj, without = ''):
     return roles
 
 def has_edit(roles):
-    has_permision = True if 'is_director' in roles else False
-    has_permision = True if 'is_guest_musician' in roles else False
-    has_permision = True if 'is_permanent_musician' in roles else False
-    return has_permision
+    if 'is_director' in roles:
+        return True
+    if 'is_guest_musician' in roles:
+        return True
+    if 'is_permanent_musician' in roles:
+        return True
+    return False

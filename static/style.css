@@ -231,6 +231,18 @@ td .color-bullet{
     border-bottom: solid 1px #405568 !important;
     padding-bottom: 12px !important;
 }
+
+.table-cont-paginator button {
+  margin: 0;
+  line-height: 21px;
+  height: 35px;
+  color: white;
+  background: #4f5e6c;
+}
+.table-cont-paginator .page-link {
+  width: auto;
+  font-size: 14px;
+}
 /**
  * Footer Styles
  */

@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from apps.musical_group.views import HomeView, MusicalGroupView, \
     SongView, SongEditView
-from apps.event.views import CalendarView, EventView
+from apps.event.views import CalendarView, EventView, NotificationListView, NotificationDetailView
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -41,6 +41,18 @@ urlpatterns = [
         r'^home/event/(?P<pk>\w{0,50})/$',
         login_required(EventView.as_view()),
         name='event',
+    ),
+
+    url(
+        r'^home/notification/$',
+        login_required(NotificationListView.as_view()),
+        name='notification',
+    ),
+
+    url(
+        r'^home/notification/(?P<pk>\w{0,50})/$',
+        login_required(NotificationDetailView.as_view()),
+        name='notification',
     ),
 
     url(r'^api/', include('apps.api.urls', namespace='api'))

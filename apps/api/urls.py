@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from apps.api.views import UserInfoViewSet, MusicalStyleViewSet, SongViewSet, \
     MusicalInstrumentViewSet, UserMusicalInstrumentStyleViewSet, UserViewSet
-from apps.event.views import EventViewSet
+from apps.event.views import EventViewSet, InvitationViewSet
 
 
 router = routers.DefaultRouter()
@@ -13,6 +13,7 @@ router.register(r'songs', SongViewSet)
 router.register(r'users-musical-instrument-style', UserMusicalInstrumentStyleViewSet)
 router.register(r'musical-instrument', MusicalInstrumentViewSet)
 router.register(r'events', EventViewSet)
+router.register(r'invitations', InvitationViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

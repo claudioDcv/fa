@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+{% block head %}
+<style media="screen">
+  .form-control, .form-control:focus {
+    background: none;
+    color: white;
+  }
+</style>{% endblock %}
+{% block content %}
+<div class="col-12">
+  <div class="form-view">
+    <h4>Creadas por mi</h4>
+    <div class="" id="notification-table-owner"></div>
+  </div>
+  <div class="form-view mt-2">
+    <h4>Enviadas a mi</h4>
+    <div class="" id="notification-table-user-invited"></div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'notification/main.js' %}" charset="utf-8"></script>
+{% endblock %}

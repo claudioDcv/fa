@@ -15,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'is_staff', 'name')
+        fields = ('id', 'username', 'name')
 
 
 class MusicalInstrumentSerializer(serializers.ModelSerializer):

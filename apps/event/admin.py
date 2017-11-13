@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.event.models import Event, EventStatus
+from apps.event.models import Event, EventStatus, Invitation
 
 
 
@@ -10,4 +10,9 @@ class EventStatusAdmin(admin.ModelAdmin):
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Invitation)
+class InvitationAdmin(admin.ModelAdmin):
     pass

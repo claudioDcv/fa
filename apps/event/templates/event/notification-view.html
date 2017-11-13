@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+{% block content %}
+
+<div class="card col-12">
+  <div class="card-body">
+    <h4 class="card-title">#{{ object.id }} {{ object.name }}</h4>
+    <h6 class="card-subtitle mb-2 text-muted">
+      {{ object.collaborate_in }}
+    </h6>
+    <p class="card-text">De: {{ object.owner.username }}</p>
+    <p class="card-text">Para: {{ object.user_invited.username }}</p>
+  </div>
+</div>
+
+{% endblock %}

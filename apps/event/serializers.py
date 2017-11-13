@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from apps.event.models import Event, EventStatus
+from apps.event.models import Event, EventStatus, Invitation
+from apps.api.serializers import UserSerializer
 import datetime
 
 
@@ -18,4 +19,14 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
+        fields = '__all__'
+
+
+class InvitationSerializer(serializers.ModelSerializer):
+
+    owner = UserSerializer(read_only=True)
+    user_invited = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Invitation
         fields = '__all__'

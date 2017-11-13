@@ -13,7 +13,6 @@ def protected_song_file(request, path, document_root=None, show_indexes=False):
         roles_by_object(user,song, 'directors')
         + roles_by_object(user, song.musical_group),
     ))
-
     if is_edit:
         return serve(request, path, document_root, show_indexes)
     else:
