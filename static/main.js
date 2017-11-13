@@ -69,15 +69,24 @@ ajaxForms.forEach(function(e){
     var successUrl = event.target.dataset.success;
     console.log(url);
     console.log(serializeForm(event.target));
+
+    var fd = new FormData()
+    Object.keys(data).forEach(function(d) {
+      if (d !== 'files') {
+        fd.append(d, data[d])
+      }
+    })
         $.ajax({
-        type: "patch",
+        type: event.target.dataset.method,
         url: url,
         contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
+        data: JSON.stringify(data),
+        processData: false,
+        // contentType: false,
         headers: {
           'X-CSRFToken': data.csrfmiddlewaretoken,
         },
-        data: JSON.stringify(data),
+        // data: fd,
         success: function(result) {
             var msg = {
               obj: data,

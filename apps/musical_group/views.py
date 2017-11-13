@@ -1,9 +1,8 @@
 from django.views.generic import TemplateView
 from apps.musical_group.models import MusicalGroup, Song
-from django.db.models import Q
 from django.shortcuts import redirect
 from apps.musical_group.forms import SongForm
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 from conf.utils import merge_list, roles_by_object
 
 
@@ -48,7 +47,7 @@ class SongView(TemplateView):
         context['song'] = song
 
         r_b_o = roles_by_object
-        roles = merge_list(r_b_o(user,song, 'directors') + r_b_o(user, song.musical_group))
+        roles = merge_list(r_b_o(user, song, 'directors') + r_b_o(user, song.musical_group))
         context['roles'] = roles
         context['has_edit'] = True if 'is_director' in context['roles'] else False
         return context
@@ -59,6 +58,13 @@ class SongView(TemplateView):
             context['file'] = context['song'].upload.url
             return self.render_to_response(context)
         return redirect('home')
+
+
+class SongCreateView(CreateView):
+    template_name = 'musical_group/song-create.html'
+    form_class = SongForm
+    success_url = '/home/song/'
+    model = Song
 
 
 class SongEditView(UpdateView):

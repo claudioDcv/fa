@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from apps.musical_group.views import HomeView, MusicalGroupView, \
-    SongView, SongEditView
+    SongView, SongEditView, SongCreateView
 from apps.event.views import CalendarView, EventView, NotificationListView, NotificationDetailView
 from django.contrib.auth import views as auth_views
 from django.conf import settings
@@ -25,6 +25,13 @@ urlpatterns = [
         login_required(SongView.as_view()),
         name='song',
     ),
+
+    url(
+        r'^home/song-create/$',
+        login_required(SongCreateView.as_view()),
+        name='song-create',
+    ),
+
     url(
         r'^home/song/(?P<pk>\w{0,50})/edit/$',
         login_required(SongEditView.as_view()),

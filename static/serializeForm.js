@@ -14,6 +14,7 @@ var serializeForm = function(form, opt) {
 
     var i, j,
         obj = {};
+    var files = new FormData()
     for (i = form.elements.length - 1; i >= 0; i = i - 1) {
         if (form.elements[i].name === "") {
             continue;
@@ -36,6 +37,9 @@ var serializeForm = function(form, opt) {
                         }
                         break;
                     case 'file':
+                        var name = form.elements[i].name
+                        var value = form.elements[i].files[0]
+                        files.append(name, value);
                         break;
                 }
                 break;
@@ -67,6 +71,9 @@ var serializeForm = function(form, opt) {
                 }
                 break;
         }
+    }
+    if (form.dataset.files !== 'undefined') {
+      obj.files = files
     }
     return obj;
 }

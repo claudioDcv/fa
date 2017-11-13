@@ -5,12 +5,11 @@
 {% block content %}
 
 <form
-  data-success="/home/song/{{form.initial.id}}/"
-  action="/api/songs/{{form.initial.id}}/"
+  data-success="/home/song/"
+  action="/api/songs/create/"
   method="post"
-  data-method="PATCH"
-  class="form-view ajax-form" id="form-song-edit"
-  enctype="multipart/form-data"
+  class="form-view ajax-form" id="form-song-create"
+  data-files
 >
     {% csrf_token %}
 
@@ -30,7 +29,7 @@
       <div class="col-12">
         <div class="form-group">
           <label for="color">Archivo</label>
-          <audio src="{{ file }}" preload="auto" />
+          <input type="file" name="file" value="" class="form-control">
         </div>
       </div>
     </div>
@@ -62,9 +61,6 @@
            id="id_musical_styles"
            multiple="multiple"
            >
-          {% for musical_style in musical_styles %}
-           <option selected value="{{ musical_style.id }}">{{ musical_style.name }}</option>
-          {% endfor %}
          </select>
        </div>
       </div>
@@ -81,9 +77,6 @@
            id="id_guest_musician"
            multiple="multiple"
          >
-         {% for guest_music in guest_musician %}
-          <option selected value="{{ guest_music.id }}">{{ guest_music.username }}</option>
-         {% endfor %}
          </select>
        </div>
       </div>
@@ -99,16 +92,13 @@
            id="id_permanent_musician"
            multiple="multiple"
          >
-         {% for permanent_music in permanent_musician %}
-          <option selected value="{{ permanent_music.id }}">{{ permanent_music.username }}</option>
-         {% endfor %}
          </select>
        </div>
       </div>
     </div>
 
     <hr />
-    <input id="input-song-edit" type="submit" value="Guardar" class="btn btn-success" />
+    <input id="input-song-create" type="submit" value="Guardar" class="btn btn-success" />
 </form>
 
 
