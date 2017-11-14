@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from apps.musical_group.models import MusicalStyle, Song, MusicalInstrument, \
     UserMusicalInstrumentStyle
-from apps.user.serializers import UserInfoSerializer
+from apps.users.serializers import UserInfoSerializer
 
 
 # Serializers define the API representation.

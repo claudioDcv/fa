@@ -1,11 +1,13 @@
 from django.views.generic import TemplateView
 from django.views.generic import DetailView
 from rest_framework import viewsets
-from apps.event.serializers import EventSerializer, InvitationSerializer
-from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.pagination import PageNumberPagination
+
+from apps.event.serializers import EventSerializer, InvitationSerializer
+from django.db.models import Q
+
 from operator import __or__ as OR
 
 

@@ -27,6 +27,12 @@
     <small>Musicos Invitados<br />{{ musical_group.guest_musician.all|join:", " }}</small>
   </div>
 
+  <div class="">
+    <a href="{% url 'song-create' musical_group.pk %}" class="btn btn-sm btn-outline-primary" name="button">
+      <i class="fa fa-edit" aria-hidden="true"></i> Crear
+    </a>
+  </div>
+
   Listado de Temas
   <table class="table table-responsive table-dark">
   <thead>
@@ -49,8 +55,10 @@
         <td><small>{{ song.permanent_musician.all|join:", " }}</small></td>
         <td><small>{{ song.guest_musician.all|join:", " }}</small></td>
         <td>
-        {% if song.upload.url %}
-          <audio src="{{ song.upload.url }}" preload="auto" />
+        {% if song.upload %}
+          {% if song.upload.url %}
+            <audio src="{{ song.upload.url }}" preload="auto" />
+          {% endif %}
         {% endif %}
         </td>
         <td>

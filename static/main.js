@@ -76,6 +76,11 @@ ajaxForms.forEach(function(e){
         fd.append(d, data[d])
       }
     })
+
+        var formData = new FormData()
+        var fil =  data.files.file
+        formData.append('file', fil)
+
         $.ajax({
         type: event.target.dataset.method,
         url: url,
@@ -88,6 +93,7 @@ ajaxForms.forEach(function(e){
         },
         // data: fd,
         success: function(result) {
+            formData.append('id', result.id)
             var msg = {
               obj: data,
               model: 'song',
@@ -97,7 +103,8 @@ ajaxForms.forEach(function(e){
             $.ajax({
                 url: '/api/file/',
                 type: 'post',
-                data: fd,
+                contentType: 'application/json; charset=utf-8',
+                data: formData,
                 headers: {'X-CSRFToken': data.csrfmiddlewaretoken},
                 cache: false,
                 contentType: false,

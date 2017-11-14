@@ -1,0 +1,24 @@
+[
+   {
+      "model":"auth.user",
+      "pk":1,
+      "fields":{
+         "password":"pbkdf2_sha256$36000$WrRaUCQSU9bg$vp4QPA/27MLfBD0++7ybDQ/wVg2NDhtm15YTigHaR9c=",
+         "last_login":null,
+         "is_superuser":true,
+         "username":"claudio",
+         "first_name":"",
+         "last_name":"",
+         "email":"claudio.dcv@gmail.com",
+         "is_staff":true,
+         "is_active":true,
+         "date_joined":"2017-11-13T22:54:55.716Z",
+         "groups":[
+
+         ],
+         "user_permissions":[
+
+         ]
+      }
+   }
+]

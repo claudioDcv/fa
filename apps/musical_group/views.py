@@ -55,7 +55,7 @@ class SongView(TemplateView):
     def get(self, request, **kwargs):
         context = self.get_context_data(**kwargs)
         if context['song']:
-            context['file'] = context['song'].upload.url
+            context['file'] = context['song'].upload.url if context['song'].upload else None
             return self.render_to_response(context)
         return redirect('home')
 
@@ -83,7 +83,7 @@ class SongEditView(UpdateView):
         context['musical_styles'] = context['object'].musical_styles.all()
         context['guest_musician'] = context['object'].guest_musician.all()
         context['permanent_musician'] = context['object'].permanent_musician.all()
-        context['file'] = context['object'].upload.url
+        context['file'] = context['object'].upload.url if context['object'].upload else None
         return context
 
     def dispatch(self, request, *args, **kwargs):

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from apps.user.models import UserInfo
+from apps.users.models import UserInfo
 from autoslug import AutoSlugField
 
 

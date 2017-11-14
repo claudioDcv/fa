@@ -1,0 +1,89 @@
+[
+   {
+      "model":"musical_group.musicalgroup",
+      "pk":1,
+      "fields":{
+         "name":"Arbol Seco",
+         "slug":"arbol-seco",
+         "color":"cccccc",
+         "musical_styles":[
+            3
+         ],
+         "directors":[
+            1
+         ],
+         "guest_musician":[
+
+         ],
+         "permanent_musician":[
+
+         ]
+      }
+   },
+   {
+      "model":"musical_group.song",
+      "pk":1,
+      "fields":{
+         "name":"Fotopsia",
+         "slug":"fotopsia",
+         "upload":"",
+         "duration":"00:01:52",
+         "creation_date":"2017-11-13",
+         "color":"cccccc",
+         "musical_group":1,
+         "musical_styles":[
+            3
+         ],
+         "guest_musician":[
+
+         ],
+         "permanent_musician":[
+
+         ]
+      }
+   },
+   {
+      "model":"musical_group.song",
+      "pk":2,
+      "fields":{
+         "name":"La Cascara",
+         "slug":"la-cascara",
+         "upload":"",
+         "duration":"00:05:30",
+         "creation_date":"2017-11-13",
+         "color":"cccccc",
+         "musical_group":1,
+         "musical_styles":[
+            3
+         ],
+         "guest_musician":[
+
+         ],
+         "permanent_musician":[
+
+         ]
+      }
+   },
+   {
+      "model":"musical_group.song",
+      "pk":3,
+      "fields":{
+         "name":"Mantra",
+         "slug":"mantra",
+         "upload":"",
+         "duration":"00:01:53",
+         "creation_date":"2017-11-13",
+         "color":"cccccc",
+         "musical_group":1,
+         "musical_styles":[
+            3
+         ],
+         "guest_musician":[
+
+         ],
+         "permanent_musician":[
+
+         ]
+      }
+   }
+]

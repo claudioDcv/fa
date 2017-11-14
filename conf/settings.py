@@ -48,7 +48,7 @@ INSTALLED_APPS = [
 
     'apps.musical_group',
     'apps.event',
-    'apps.user',
+    'apps.users',
     'apps.api',
 ]
 

@@ -7,6 +7,20 @@
 # claudio.dcv@gmail.com
 # 1234qwer
 
-./manage.py loaddata musicalstyle.json
-./manage.py loaddata musicalinstrument.json
-./manage.py loaddata eventstatus.json
+rm db.sqlite3
+rm -r ./media
+mkdir ./media
+
+./manage.py makemigrations
+
+./manage.py migrate
+
+./manage.py loaddata ./initial/musicalstyle.json
+./manage.py loaddata ./initial/musicalinstrument.json
+./manage.py loaddata ./initial/eventstatus.json
+
+# OPTIONAL DATA ONLY DEV
+./manage.py loaddata ./initial/testdata.json
+./manage.py loaddata ./initial/user.json
+
+./manage.py runserver

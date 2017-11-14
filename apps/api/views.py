@@ -1,5 +1,5 @@
-from apps.user.models import UserInfo
-from apps.user.serializers import UserInfoSerializer
+from apps.users.models import UserInfo
+from apps.users.serializers import UserInfoSerializer
 from rest_framework import viewsets
 from apps.api.serializers import UserSerializer, MusicalStyleSerializer, SongSerializer, \
     UserMusicalInstrumentStyleSerializer, MusicalInstrumentSerializer
